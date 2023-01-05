@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SellerTouch : MonoBehaviour
+public class TouchController : MonoBehaviour
 {
     public UnityEvent onTouch;
 

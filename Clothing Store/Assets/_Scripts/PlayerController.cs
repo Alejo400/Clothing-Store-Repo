@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 4;
     float horizontalMove, verticalMove;
     Vector2 movement;
+    public Dictionary<string, GameObject> myPurchasedItems = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
@@ -24,6 +25,10 @@ public class PlayerController : MonoBehaviour
         verticalMove = Input.GetAxis("Vertical");
         movement = new Vector2(horizontalMove, verticalMove);
         _rigibody.velocity = movement.normalized * speed;
+    }
 
+    public void showDictionary()
+    {
+       Debug.Log(myPurchasedItems.Count);
     }
 }
