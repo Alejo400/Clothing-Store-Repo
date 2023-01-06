@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     float horizontalMove, verticalMove;
     Vector2 movement;
     public Dictionary<string, GameObject> myPurchasedItems = new Dictionary<string, GameObject>();
+    [SerializeField]
+    public GameObject myClothes; //specific clothes of Mary Sky
+    const int nCharactersToRemove = 5;
+    public clothingCharacteristics[] clothesOfTypes;
 
     private void Awake()
     {
@@ -26,9 +30,25 @@ public class PlayerController : MonoBehaviour
         movement = new Vector2(horizontalMove, verticalMove);
         _rigibody.velocity = movement.normalized * speed;
     }
-
-    public void showDictionary()
+    public void changeClothes(string name)
     {
-       Debug.Log(myPurchasedItems.Count);
+        //remove word "image" to find the name of Prefabs
+        name = name.Remove(0, nCharactersToRemove);
+        GameObject clothes = GameObject.Find(name);
+        //know the type of clothes
+        TypeClothing clothesType = clothes.GetComponent<clothingCharacteristics>().typeClothing;
+        //Find the all clothes
+        clothesOfTypes = FindObjectsOfType<clothingCharacteristics>();
+        foreach (var item in clothesOfTypes)
+        {
+            //find which clothes have the same type of the selected clothes to use. Example "shirt"
+            if (item.typeClothing == clothesType && item.gameObject.name != name)
+            {
+                //Disabled the sprite renderer
+                item.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+        clothes.GetComponent<SpriteRenderer>().enabled = true;
+        
     }
 }

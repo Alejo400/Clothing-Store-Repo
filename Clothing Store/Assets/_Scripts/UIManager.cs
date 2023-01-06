@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    public GameObject StoreInventory;
+    public GameObject StoreInventory, CabinetInventory;
     public static UIManager _sharedIntance;
     [SerializeField]
     public List<GameObject> checkMarks = new List<GameObject>();
@@ -31,10 +31,10 @@ public class UIManager : MonoBehaviour
         StoreManager._sharedIntance.RemoveAllItemsOfInventory();
     }
     /// <summary>
-    /// //Show or Hide checkmark in images items
+    /// //Show or Hide checkmark in images items. Add or Remove Item of Inventory to Buy
     /// </summary>
     /// <param name="checkMark">selected item</param>
-    public void SelectedItem(GameObject checkMark, GameObject item)
+    public void SelectedItem(GameObject checkMark, GameObject[] item)
     {
         checkMark.SetActive(!checkMark.activeInHierarchy);
         if (checkMark.activeInHierarchy)
@@ -45,5 +45,10 @@ public class UIManager : MonoBehaviour
         {
             StoreManager._sharedIntance.RemoveItemOfInventory(item);
         }
+    }
+    //Show Cabinet UI Inventory to change clothes
+    public void ShowCabinetInventory()
+    {
+        CabinetInventory.SetActive(true);
     }
 }

@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\PlayerController.cs" />
     <Compile Include="Assets\_Scripts\TouchController.cs" />
-    <Compile Include="Assets\_Scripts\UIManager.cs" />
     <Compile Include="Assets\_Scripts\StoreManager.cs" />
+    <Compile Include="Assets\_Scripts\UIManager.cs" />
     <Compile Include="Assets\_Scripts\SelectItem.cs" />
+    <Compile Include="Assets\_Scripts\clothingCharacteristics.cs" />
+    <Compile Include="Assets\_Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
