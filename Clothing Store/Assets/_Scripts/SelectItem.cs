@@ -9,6 +9,7 @@ public class SelectItem : MonoBehaviour, IPointerClickHandler
     public GameObject checkMarkItem;
     [SerializeField]
     public GameObject[] item;
+    public int ID;
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         //The selected image will execute a specific action depending of the selected structure

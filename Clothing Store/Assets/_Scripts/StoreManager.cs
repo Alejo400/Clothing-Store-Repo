@@ -44,20 +44,29 @@ public class StoreManager : MonoBehaviour
         buyerPerson = GameObject.Find(buyerPersonName);
         foreach (var items in listSelectedItems)
         {
-            if (buyerPerson.GetComponent<PlayerController>().myPurchasedItems.ContainsKey(items.Key))
+            if (!buyerPerson.GetComponent<PlayerController>().myPurchasedItems.ContainsKey(items.Key + "(Clone)"))
             {
-                return;
-                //buyerPerson.GetComponent<PlayerController>().myPurchasedItems.Add(items.Key + Random.Range(1, 999), items.Value);
-            }
-            else
-            {
-                //Add values of dictionary in the dictionary items of the player 
-                buyerPerson.GetComponent<PlayerController>().myPurchasedItems.Add(items.Key, items.Value[0]);
+                //Add keys and items of dictionary in the dictionary items of the player
                 //instantiate and add prefabs in the transform of player category clothes (object empty)
-                Instantiate(items.Value[0], buyerPerson.transform.Find("Clothes"));
+
+                buyerPerson.GetComponent<PlayerController>().myPurchasedItems.Add(items.Key + "(Clone)",
+                    Instantiate(items.Value[0], buyerPerson.transform.Find("Clothes")));
 
                 //instantiate and add images of items in the transform of player clothes (UI container)
                 Instantiate(items.Value[1], buyerPerson.GetComponent<PlayerController>().myClothes.transform);
+            }
+            else
+            {
+                //give a random number to buy similar clothes
+                int randomNumber = Random.Range(0, 999);
+                //create new key to find the item
+                string newKey = $"{items.Key}(Clone){randomNumber}";
+
+                buyerPerson.GetComponent<PlayerController>().myPurchasedItems.Add(newKey,
+                    Instantiate(items.Value[0], buyerPerson.transform.Find("Clothes")));
+
+                GameObject imageItem = Instantiate(items.Value[1], buyerPerson.GetComponent<PlayerController>().myClothes.transform);
+                imageItem.name += randomNumber;
             }
         }
         UIManager._sharedIntance.HideStoreInventory();

@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
         }
         StoreManager._sharedIntance.RemoveAllItemsOfInventory();
     }
+    //Hide UI Cabinet
+    public void HideCabinet()
+    {
+        CabinetInventory.SetActive(false);
+    }
     /// <summary>
     /// //Show or Hide checkmark in images items. Add or Remove Item of Inventory to Buy
     /// </summary>

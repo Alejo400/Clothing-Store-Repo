@@ -14,14 +14,22 @@ public class PlayerController : MonoBehaviour
     public Dictionary<string, GameObject> myPurchasedItems = new Dictionary<string, GameObject>();
     [SerializeField]
     public GameObject myClothes; //specific clothes of Mary Sky
-    const int nCharactersToRemove = 5;
-    public clothingCharacteristics[] clothesOfTypes;
+    //remove Image and Clone
+    const int nCharactersStartRemove = 5;
+    public List<GameObject> defaultClothes = new List<GameObject>();
 
     private void Awake()
     {
         _rigibody = GetComponent<Rigidbody2D>();
     }
-
+    private void Start()
+    {
+        //Save the default clothes in the dictionary
+        foreach (var item in defaultClothes)
+        {
+            myPurchasedItems.Add(item.name,item);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,22 +41,20 @@ public class PlayerController : MonoBehaviour
     public void changeClothes(string name)
     {
         //remove word "image" to find the name of Prefabs
-        name = name.Remove(0, nCharactersToRemove);
-        GameObject clothes = GameObject.Find(name);
+        name = name.Remove(0, nCharactersStartRemove);
+        GameObject clothes = myPurchasedItems[name];
         //know the type of clothes
         TypeClothing clothesType = clothes.GetComponent<clothingCharacteristics>().typeClothing;
-        //Find the all clothes
-        clothesOfTypes = FindObjectsOfType<clothingCharacteristics>();
-        foreach (var item in clothesOfTypes)
+        foreach (var item in myPurchasedItems.Values)
         {
             //find which clothes have the same type of the selected clothes to use. Example "shirt"
-            if (item.typeClothing == clothesType && item.gameObject.name != name)
+            if (item.GetComponent<clothingCharacteristics>().typeClothing == clothesType 
+                && item.name != name)
             {
                 //Disabled the sprite renderer
-                item.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                item.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
         clothes.GetComponent<SpriteRenderer>().enabled = true;
-        
     }
 }
