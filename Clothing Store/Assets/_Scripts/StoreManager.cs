@@ -11,6 +11,8 @@ public class StoreManager : MonoBehaviour
     string buyerPersonName;
     GameObject buyerPerson;
     public List<GameObject> purchasedItems = new List<GameObject>();
+    public Button PurchasedButtom;
+
     private void Awake()
     {
         if (_sharedIntance == null)
@@ -38,6 +40,16 @@ public class StoreManager : MonoBehaviour
     public void RemoveAllItemsOfInventory()
     {
         listSelectedItems.Clear();
+    }
+    /// <summary>
+    /// Enabled the botton to buy if the dictionary have 1 key or more
+    /// </summary>
+    public void InteractablePurchasedBotton()
+    {
+        if (listSelectedItems.Count <= 0)
+            PurchasedButtom.interactable = false;
+        else
+            PurchasedButtom.interactable = true;
     }
     public void BuySelectedItems()
     {

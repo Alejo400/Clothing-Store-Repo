@@ -17,12 +17,15 @@ public class UIManager : MonoBehaviour
             Destroy(this);
     }
     //Show UI Inventory to buy in store
-    public void ShowStoreInventory() {
+    public void ShowStoreInventory() 
+    {
+        GameManager._sharedInstance.playerMove(false);
         StoreInventory.SetActive(true);
     }
     //Hide UI Inventory and remove selected items
     public void HideStoreInventory()
     {
+        GameManager._sharedInstance.playerMove(true);
         StoreInventory.SetActive(false);
         foreach (var item in checkMarks)
         {
@@ -30,9 +33,16 @@ public class UIManager : MonoBehaviour
         }
         StoreManager._sharedIntance.RemoveAllItemsOfInventory();
     }
+    //Show Cabinet UI Inventory to change clothes
+    public void ShowCabinetInventory()
+    {
+        GameManager._sharedInstance.playerMove(false);
+        CabinetInventory.SetActive(true);
+    }
     //Hide UI Cabinet
     public void HideCabinet()
     {
+        GameManager._sharedInstance.playerMove(true);
         CabinetInventory.SetActive(false);
     }
     /// <summary>
@@ -45,15 +55,12 @@ public class UIManager : MonoBehaviour
         if (checkMark.activeInHierarchy)
         {
             StoreManager._sharedIntance.AddItemToInventory(item);
+            StoreManager._sharedIntance.InteractablePurchasedBotton();
         }
         else
         {
             StoreManager._sharedIntance.RemoveItemOfInventory(item);
+            StoreManager._sharedIntance.InteractablePurchasedBotton();
         }
-    }
-    //Show Cabinet UI Inventory to change clothes
-    public void ShowCabinetInventory()
-    {
-        CabinetInventory.SetActive(true);
     }
 }

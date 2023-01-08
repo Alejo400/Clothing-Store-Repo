@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rigibody;
     [SerializeField, Range(2, 6)]
     public float speed = 4;
+    float defaultSpeed;
+    public float DefaultSpeed {
+        get => defaultSpeed;
+        set => defaultSpeed = value; }
+
     float horizontalMove, verticalMove;
     Vector2 movement;
     public Dictionary<string, GameObject> myPurchasedItems = new Dictionary<string, GameObject>();
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        defaultSpeed = speed;
         //Save the default clothes in the dictionary
         foreach (var item in defaultClothes)
         {
