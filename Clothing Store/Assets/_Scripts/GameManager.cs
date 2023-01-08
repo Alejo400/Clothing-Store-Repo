@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _sharedInstance;
     public SelectedStructure _selectedStructure;
-    [SerializeField]
     public GameObject _playerDetected;
     private void Awake()
     {

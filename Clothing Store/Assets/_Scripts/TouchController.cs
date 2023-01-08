@@ -15,7 +15,18 @@ public class TouchController : MonoBehaviour
     private void OnMouseDown()
     {
         GameManager._sharedInstance._selectedStructure = _selectedStructure;
-        if(playerInZone)
-            onTouch.Invoke();
+        if (playerInZone)
+        {
+            if (_selectedStructure == SelectedStructure.ClothingStore)
+            {
+                if (GetComponent<StoreController>().sellerInStore)
+                    onTouch.Invoke();
+            }
+            else
+            {
+                onTouch.Invoke();
+            }
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D _rigibody;
-    [SerializeField, Range(2, 6)]
+    [Range(2, 6)]
     public float speed = 4;
     float defaultSpeed;
     public float DefaultSpeed {
@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour
     float horizontalMove, verticalMove;
     Vector2 movement;
     public Dictionary<string, GameObject> myPurchasedItems = new Dictionary<string, GameObject>();
-    [SerializeField]
     public GameObject myClothes; //specific clothes of Mary Sky
     //remove Image and Clone
     const int nCharactersStartRemove = 5;
-    public List<GameObject> defaultClothes = new List<GameObject>();
+    [SerializeField]
+    List<GameObject> defaultClothes = new List<GameObject>();
 
     private void Awake()
     {

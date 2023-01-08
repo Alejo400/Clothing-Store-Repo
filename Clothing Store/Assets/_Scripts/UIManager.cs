@@ -5,10 +5,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    public GameObject StoreInventory, CabinetInventory;
+    GameObject StoreInventory, CabinetInventory;
     public static UIManager _sharedIntance;
     [SerializeField]
-    public List<GameObject> checkMarks = new List<GameObject>();
+    List<GameObject> checkMarks = new List<GameObject>();
     private void Awake()
     {
         if (_sharedIntance == null)

@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 public class SelectItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
-    public GameObject checkMarkItem;
+    GameObject checkMarkItem;
     [SerializeField]
-    public GameObject[] item;
+    GameObject[] item;
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         //The selected image will execute a specific action depending of the selected structure

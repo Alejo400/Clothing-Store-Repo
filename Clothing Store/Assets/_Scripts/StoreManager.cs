@@ -8,7 +8,6 @@ public class StoreManager : MonoBehaviour
 
     public static StoreManager _sharedIntance;
     Dictionary<string, GameObject[]> listSelectedItems = new Dictionary<string, GameObject[]>();
-    string buyerPersonName;
     GameObject buyerPerson;
     public List<GameObject> purchasedItems = new List<GameObject>();
     public Button PurchasedButtom;
@@ -19,11 +18,6 @@ public class StoreManager : MonoBehaviour
             _sharedIntance = this;
         else
             Destroy(this);
-    }
-    private void Start()
-    {
-        //ToDo Improve how to get this value
-        buyerPersonName = "Mary Sky";
     }
     /// <summary>
     /// add selected item of the store
@@ -40,6 +34,7 @@ public class StoreManager : MonoBehaviour
     public void RemoveAllItemsOfInventory()
     {
         listSelectedItems.Clear();
+        InteractablePurchasedBotton();
     }
     /// <summary>
     /// Enabled the botton to buy if the dictionary have 1 key or more
@@ -53,7 +48,7 @@ public class StoreManager : MonoBehaviour
     }
     public void BuySelectedItems()
     {
-        buyerPerson = GameObject.Find(buyerPersonName);
+        buyerPerson = GameManager._sharedInstance._playerDetected;
         foreach (var items in listSelectedItems)
         {
             if (!buyerPerson.GetComponent<PlayerController>().myPurchasedItems.ContainsKey(items.Key + "(Clone)"))
@@ -82,5 +77,6 @@ public class StoreManager : MonoBehaviour
             }
         }
         UIManager._sharedIntance.HideStoreInventory();
+        PurchasedButtom.interactable = false;
     }
 }
