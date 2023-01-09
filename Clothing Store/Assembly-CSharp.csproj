@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\PlayerController.cs" />
+    <Compile Include="Assets\_Scripts\CollectItems.cs" />
     <Compile Include="Assets\_Scripts\ClockUI.cs" />
     <Compile Include="Assets\_Scripts\TouchController.cs" />
     <Compile Include="Assets\_Scripts\StoreController.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="Assets\_Scripts\GameManager.cs" />
     <Compile Include="Assets\_Scripts\SelectItem.cs" />
     <Compile Include="Assets\_Scripts\DetectedPlayer.cs" />
-    <Compile Include="Assets\_Scripts\CollectItems.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
