@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
             _sharedInstance = this;
         }
     }
+    private void Start()
+    {
+        //Pause the game while the player see the instructions
+        Time.timeScale = 0;
+    }
     /// <summary>
     /// Used to prevent player movement if it's performing an action. For example: buying
     /// </summary>
@@ -24,6 +29,5 @@ public class GameManager : MonoBehaviour
             _player.speed = _player.DefaultSpeed;
         else
             _player.speed = 0;
-
     }
 }

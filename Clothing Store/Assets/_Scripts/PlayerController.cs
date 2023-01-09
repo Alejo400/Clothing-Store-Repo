@@ -13,6 +13,13 @@ public class PlayerController : MonoBehaviour
     public float DefaultSpeed {
         get => defaultSpeed;
         set => defaultSpeed = value; }
+    [SerializeField]
+    int money;
+    public int Money
+    {
+        get => money;
+        set => money = value;
+    }
 
     float horizontalMove, verticalMove;
     Vector2 movement;
@@ -43,6 +50,9 @@ public class PlayerController : MonoBehaviour
         verticalMove = Input.GetAxis("Vertical");
         movement = new Vector2(horizontalMove, verticalMove);
         _rigibody.velocity = movement.normalized * speed;
+
+        if (Input.GetButtonDown("Fire2"))
+            UIManager._sharedIntance.PauseGame();
     }
     public void changeClothes(string name)
     {

@@ -6,7 +6,7 @@ using TMPro;
 public class StoreController : MonoBehaviour
 {
     [SerializeField]
-    float sellerHourStartJob;
+    float sellerHourStartJob,eachHourToClose;
     [SerializeField]
     GameObject seller, closeWindow;
     public bool sellerInStore;
@@ -33,9 +33,7 @@ public class StoreController : MonoBehaviour
             {
                 UIManager._sharedIntance.HideStoreInventory();
             }
-                
-            //each 12 hours
-            yield return new WaitForSeconds(12 * multiplierHours);
+            yield return new WaitForSeconds(eachHourToClose * multiplierHours);
         }
     }
 }

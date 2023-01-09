@@ -9,13 +9,15 @@ public class SelectItem : MonoBehaviour, IPointerClickHandler
     GameObject checkMarkItem;
     [SerializeField]
     GameObject[] item;
+    [SerializeField]
+    int price;
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         //The selected image will execute a specific action depending of the selected structure
         if (GameManager._sharedInstance._selectedStructure == SelectedStructure.ClothingStore)
         {
             //Selected the item on inventory
-            UIManager._sharedIntance.SelectedItem(checkMarkItem, item);
+            UIManager._sharedIntance.SelectedItem(checkMarkItem, item, price);
         }
         if (GameManager._sharedInstance._selectedStructure == SelectedStructure.Cabinet)
         {

@@ -5,7 +5,8 @@ using UnityEngine.Events;
 public enum SelectedStructure
 {
     ClothingStore,
-    Cabinet
+    Cabinet,
+    Reward
 }
 public class TouchController : MonoBehaviour
 {
@@ -27,6 +28,5 @@ public class TouchController : MonoBehaviour
                 onTouch.Invoke();
             }
         }
-
     }
 }
